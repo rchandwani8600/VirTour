@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&display=swap');
+/* *{
+    margin: 10px;
+    padding: 10px;
+    color: black;
+} */
+/* .row{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    padding: 10px;
+}
+.Pano{
+    width: 100%;
+    height: 60vh;
+}
+#College_name{
+    font-size: 3rem;
+    text-transform: capitalize;
+    display: block;
+    color: black;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    justify-self: center;
+    font-family: 'Cormorant SC', serif;
+    height: 10vh;
+    position: relative;
+    background: transparent;
+}
+.card {
+    margin: 20px;
+    width: 80vh;
+    height: 50vh;
+    padding: 10px;
+    background: rgba(198, 198, 198, 0.34);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.440);
+    border-left: 2px  rgba(255, 255, 255, 0.545) outset;
+    box-shadow: -40px 50px 30px rgba(0, 0, 0, 0.280);
+    transform: skewX(10deg);
+    transition: .4s;
+    overflow: hidden;
+    color: white;
+  }
+  
+  .card:hover {
+    height: 90vh;
+    transform: skew(0deg);
+  }
+  .Pano:hover{
+    height: 100%;
+  }
+ 
+  
+  .card h5 {
+    text-align: center;
+    color: rgb(218, 244, 237);
+    text-shadow: -10px 5px 10px rgba(0, 0, 0, 0.573);
+  }
+  .card p{
+    color: aliceblue;
+    text-align: center;
+  } */
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+      Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+  
+  .main-container {
+    padding: 40px;
+  }
+  
+  
+  .heading {
+    text-align: center;
+  }
+  
+  .College_name {
+    font-weight: 600;
+  }
+  
+  .heading__credits {
+    margin: 10px 0px;
+    color: #888888;
+    font-size: 25px;
+    transition: all 0.5s;
+  }
+  
+  .heading__link {
+    text-decoration: none;
+  }
+  
+  .heading__credits .heading__link {
+    color: inherit;
+  }
+  
+  /* CARDS */
+  .Pano{
+    width: 100%;
+    height: 20vh;
+}
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .card {
+    margin: 20px;
+    padding: 20px;
+    width: 500px;
+    height: fit-content;
+    display: grid;
+    grid-template-rows: 20px 50px 1fr 50px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+  }
+  
+  .card:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+  }
+  
+  .card__link,
+  .card__exit,
+  .card__icon {
+    position: relative;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .card__link::after {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    content: "";
+    width: 0%;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.5s;
+  }
+  
+  .card__link:hover::after {
+    width: 100%;
+  }
+  
+  .card__exit {
+    grid-row: 1/2;
+    justify-self: end;
+  }
+  
+  .card__icon {
+    grid-row: 2/3;
+    font-size: 30px;
+  }
+  
+  .card__title {
+    grid-row: 3/4;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: x-large;
+  }
+  
+  .card__apply {
+    grid-row: 4/5;
+    align-self: center;
+  }
+  
+  /* CARD BACKGROUNDS */
+  
+  .card-1 {
+    background: radial-gradient(#c2cfe8, #335e9a);
+  }
+  
+  .card-2 {
+    background: radial-gradient(#eda5a6, #bf7285);
+  }
+  
+  .card-3 {
+    background: radial-gradient(#e065f3, #8e5da3);
+  }
+ 
+  .card-4 {
+    background: radial-gradient(#60efbc, #438c85);
+  }
+  /* RESPONSIVE */
+  
+  @media (max-width: 1600px) {
+    .cards {
+      justify-content: center;
+    }
+  }

@@ -7,9 +7,14 @@ import folium
 import PIL.Image
 import PIL.ExifTags
 from geopy.geocoders import Nominatim
+from cryptography.fernet import Fernet
+from bson.json_util import dumps
+import pyttsx3
 
 app = Flask(__name__)
 Bootstrap(app)
+key = Fernet.generate_key()
+fernet = Fernet(key)
 
 app.config["SECRET_KEY"] = "SECRET_KEY"
 app.config["UPLOAD_FOLDER"] = "static/uploads/"
@@ -34,6 +39,8 @@ def student_signup():
         username= request.form.get("username")
         password= request.form.get("password")
 
+        # encMessage = fernet.encrypt(password.encode())
+
         # print(mongo.db.students.insert_one({
         #     "name": name,
         #     "email": email,
@@ -48,12 +55,50 @@ def student_signup():
             "password": password
         })
 
+        # print()
+
         flash("Successfully added student!", "success")
         return redirect(url_for("student_signup"))
     
     # print(mongo.db)
 
     return render_template("student_signup.html")
+
+@app.route("/student_login/",methods=["POST","GET"])
+def student_login():
+    if request.method == "POST":
+        username= request.form.get("logusername")
+        password= request.form.get("logpassword")
+
+        password1 = mongo.db.students.find_one({"username":username})
+        if password1:
+            password2 = password1['password']
+            
+            # decMessage = fernet.decrypt(password2.decode())
+
+            if password2 == password:
+                flash("Successfully Logged In!", "success")
+
+        else: 
+            flash("Username or password invalid!","danger")
+
+
+        # print(mongo.db.students.insert_one({
+        #     "name": name,
+        #     "email": email,
+        #     "username": username,
+        #     "password": password
+        # }))
+
+       
+        # print()
+
+       
+        return redirect(url_for("student_login"))
+    
+    # print(mongo.db)
+
+    return render_template("student_login.html")
 
 
 @app.route("/gallery/")
@@ -69,6 +114,7 @@ def upload():
         image3 = request.files["limage"]
         image4 = request.files["caimage"]
         description = request.form.get("description")
+        voice = request.form.get("voice")
         if image and image2 and image3 and image4 and description and image.filename.split(".")[-1].lower() in ALLOWED_EXTENSIONS and image2.filename.split(".")[-1].lower() in ALLOWED_EXTENSIONS and image3.filename.split(".")[-1].lower() in ALLOWED_EXTENSIONS and image4.filename.split(".")[-1].lower() in ALLOWED_EXTENSIONS:
             filename = secure_filename(image.filename)
             filename2 = secure_filename(image2.filename)
@@ -84,7 +130,8 @@ def upload():
                 "classroom": filename2,
                 "library": filename3,
                 "canteen": filename4,
-                "description": description.strip()
+                "description": description.strip(),
+                "voice":voice.strip()
             })
             get_location()
 
@@ -138,3 +185,48 @@ def get_location():
         
         folium.Marker([latitude, longitude], popup= cllg_name+ ","+locname.address, tooltip = "Click for virtual tour").add_to(m)
     m.save('templates/Map.html')
+
+@app.route("/list")
+def json_data():
+    cursor = mongo.db.counsellors.find()
+    list_cur = list(cursor)
+    # print(list_cur)
+    json_data = dumps(list_cur, indent = 2) 
+    with open('data.json', 'w') as file:
+        file.write(json_data)
+    return render_template("counsellors_list.html")
+
+
+def text_to_speech(text, gender):
+    """
+    Function to convert text to speech
+    :param text: text
+    :param gender: gender
+    :return: None
+    """
+    voice_dict = {'Male': 0, 'Female': 1}
+    code = voice_dict[gender]
+
+    engine = pyttsx3.init()
+
+    # Setting up voice rate
+    engine.setProperty('rate', 125)
+
+    # Setting up volume level  between 0 and 1
+    engine.setProperty('volume', 0.8)
+
+    # Change voices: 0 for male and 1 for female
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[code].id)
+
+    engine.say(text)
+    engine.runAndWait()
+
+text = 'Hello ! My name is Siddhesh.'
+gender = 'Male'  # Voice assistant 
+@app.route("/virtual_tour")
+def virtual_tour():
+    # text = mongo.db.gallery.find_one()
+
+    text_to_speech(text, gender)
+    return render_template("virtual_tour.html")
