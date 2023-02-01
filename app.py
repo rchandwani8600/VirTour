@@ -17,8 +17,8 @@ import stripe
 
 app = Flask(__name__)
 
-app.config['STRIPE_PUBLIC_KEY'] = 'pk_test_51MUQGMSJjAhmPZHxvNE5dBZz7NB2m1log9ISyr4ftGSqDtIQki0FAbiSuJ7cIjjIu3CI7s9A57I1Z1YLSnOWdViF00hzorWvfm'
-app.config['STRIPE_SECRET_KEY'] = 'sk_test_51MUQGMSJjAhmPZHxEMg3S2evX7xMaZPTUYyv3oxlxQsB6L92ONi852niJxf8IS9iw4puXPfGefiz4npx8XB4mas400U9BLD3rU'
+app.config['STRIPE_PUBLIC_KEY'] = 'STRIPE_PUBLIC_KEY'
+app.config['STRIPE_SECRET_KEY'] = 'STRIPE_SECRET_KEY'
 
 stripe.api_key = app.config['STRIPE_SECRET_KEY']
 
@@ -39,6 +39,63 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/gallery"
 
 mongo = PyMongo(app)
 ALLOWED_EXTENSIONS = ["png", "jpg", "jpeg", "gif"]
+
+
+def findPage():
+    reader = PdfReader('static/college.pdf')
+        
+    for i in range(0, len(reader.pages)):
+            page = reader.pages[i]
+            text = page.extract_text()
+            print(cllg_mumid)
+            print(text)
+            if  cllg_mumid in text:
+                return True
+            
+
+def get_location():
+    images = "static/uploads/"
+    directory = os.fsencode(images)
+    m = folium.Map( zoom_start = 100)
+    marker_cluster = MarkerCluster().add_to(m)
+    for i in os.listdir(directory):
+        
+        img = PIL.Image.open(images+i.decode())
+        # print(mongo.db.gallery)
+        cllg = mongo.db.gallery.find_one({"filename":i.decode()})
+        cllg_name=cllg['description']
+        cllg_id = str(cllg['_id'])
+        print(cllg_id)
+        exif = {PIL.ExifTags.TAGS[k]:v
+            for k, v in img._getexif().items()
+            if k in PIL.ExifTags.TAGS
+            }
+  
+
+        north = exif['GPSInfo'][2]
+        east = exif['GPSInfo'][4]
+        
+
+        latitude = ((((north[0]*60)+north[1])*60)+north[2])/60/60
+        longitude = ((((east[0]*60)+east[1])*60)+east[2])/60/60
+        latitude = float(latitude)
+        longitude = float(longitude)
+       
+        geoloc = Nominatim(user_agent="GetLoc")
+        locname = geoloc.reverse(f"{latitude}, {longitude}")
+
+        popup=generate_link(cllg_name,cllg_id, locname.address)
+        folium.Marker([latitude, longitude], popup= popup,name = cllg_name, tooltip = "Click for virtual tour").add_to(m)
+        
+    # servicesearch = Search(
+    #     layer=marker_cluster,
+    #     search_label="name",
+    #     placeholder='Search for a service',
+    #     collapsed=False,
+    # ).add_to(m)
+
+    m.save('templates/Map.html')
+
 
 @app.route("/")
 def index():
@@ -67,13 +124,9 @@ def student_signup():
             "username": username,
             "password": password
         })
-
-        # print()
-
         flash("Successfully added student!", "success")
         return redirect(url_for("student_login"))
     
-    # print(mongo.db)
 
     return render_template("student_signup.html")
 
@@ -94,80 +147,12 @@ def student_login():
 
         else: 
             flash("Username or password invalid!","danger")
-
-
-        # print(mongo.db.students.insert_one({
-        #     "name": name,
-        #     "email": email,
-        #     "username": username,
-        #     "password": password
-        # }))
-
-       
-        # print()
-
        
         return redirect("http://127.0.0.1:5000/list/")
-    
-    # print(mongo.db)
 
     return render_template("student_login.html")
 
 
-@app.route("/college_login/",methods=["POST","GET"])
-def college_login():
-    if request.method == "POST":
-        email= request.form.get("logemail")
-        password= request.form.get("logpassword")
-
-        password1 = mongo.db.gallery.find_one({"email":email})
-        if password1:
-            password2 = password1['password']
-            
-            # decMessage = fernet.decrypt(password2.decode())
-
-            if password2 == password:
-                flash("Successfully Logged In!", "success")
-
-        else: 
-            flash("Username or password invalid!","danger")
-
-
-        # print(mongo.db.students.insert_one({
-        #     "name": name,
-        #     "email": email,
-        #     "username": username,
-        #     "password": password
-        # }))
-
-       
-        # print()
-
-       
-        return redirect(url_for("dashboard"))
-    
-    # print(mongo.db)
-
-    return render_template("college_login.html")
-
-
-@app.route("/gallery/")
-def gallery():
-    return render_template("gallery.html", gallery=mongo.db.gallery.find())
-
-
-def findPage():
-    reader = PdfReader('static/college.pdf')
-        
-    for i in range(0, len(reader.pages)):
-            page = reader.pages[i]
-            text = page.extract_text()
-            print(cllg_mumid)
-            print(text)
-            if  cllg_mumid in text:
-                return True
-            
-            
 @app.route("/upload/",methods=["POST","GET"])
 def upload():
     global cllg_mumid
@@ -221,61 +206,46 @@ def upload():
         
     return render_template("upload.html")
 
+
+@app.route("/college_login/",methods=["POST","GET"])
+def college_login():
+    if request.method == "POST":
+        email= request.form.get("logemail")
+        password= request.form.get("logpassword")
+
+        password1 = mongo.db.gallery.find_one({"email":email})
+        if password1:
+            password2 = password1['password']
+            
+            # decMessage = fernet.decrypt(password2.decode())
+
+            if password2 == password:
+                flash("Successfully Logged In!", "success")
+
+        else: 
+            flash("Username or password invalid!","danger")
+       
+        return redirect(url_for("dashboard"))
+
+    return render_template("college_login.html")
+
+
+# @app.route("/gallery/")
+# def gallery():
+#     return render_template("gallery.html", gallery=mongo.db.gallery.find())
+            
+
+
 @app.route("/map/")
 def get_location_route():
     return render_template("Map.html")
 
-def get_location():
-    images = "static/uploads/"
-    directory = os.fsencode(images)
-    m = folium.Map( zoom_start = 100)
-    marker_cluster = MarkerCluster().add_to(m)
-    for i in os.listdir(directory):
-        # print(i)
-        img = PIL.Image.open(images+i.decode())
-        # print(mongo.db.gallery)
-        cllg = mongo.db.gallery.find_one({"filename":i.decode()})
-        cllg_name=cllg['description']
-        cllg_id = str(cllg['_id'])
-        print(cllg_id)
-        exif = {PIL.ExifTags.TAGS[k]:v
-            for k, v in img._getexif().items()
-            if k in PIL.ExifTags.TAGS
-            }
-    # print(exif)
-    # print(exif['GPSInfo'])
-
-        north = exif['GPSInfo'][2]
-        east = exif['GPSInfo'][4]
-        # print(north)
-        # print(east)
-
-        latitude = ((((north[0]*60)+north[1])*60)+north[2])/60/60
-        longitude = ((((east[0]*60)+east[1])*60)+east[2])/60/60
-        latitude = float(latitude)
-        longitude = float(longitude)
-        # print(latitude)
-        # print(longitude)
-
-        geoloc = Nominatim(user_agent="GetLoc")
-        locname = geoloc.reverse(f"{latitude}, {longitude}")
-
-        popup=generate_link(cllg_name,cllg_id, locname.address)
-        folium.Marker([latitude, longitude], popup= popup,name = cllg_name, tooltip = "Click for virtual tour").add_to(m)
-        
-    # servicesearch = Search(
-    #     layer=marker_cluster,
-    #     search_label="name",
-    #     placeholder='Search for a service',
-    #     collapsed=False,
-    # ).add_to(m)
-
-    m.save('templates/Map.html')
 
 @app.route("/list")
 def json_data():
     
     return render_template("counsellors_list.html")
+
 
 @app.route("/virtual_tour/<cllg>")
 def virtual_tour(cllg):
@@ -285,11 +255,11 @@ def generate_link(cllgname,cllgid,cllgaddress):
     return "<a href=/virtual_tour/"+cllgid+">"+cllgname+","+cllgaddress+"</a>"
 
 
+
 @app.route("/fetch_cllg")
 def fetch_cllg():
     cursor = mongo.db.gallery.find()
     list_cur = list(cursor)
-    # print(list_cur)
     return dumps(list_cur, indent = 2) 
 
 
@@ -312,9 +282,8 @@ def counsellor_signup():
             "password": password
         })
 
-        # print()
 
-        flash("Successfully added student!", "success")
+        flash("Successfully added counsellor!", "success")
         return redirect(url_for("counsellor_signup"))
     
 
