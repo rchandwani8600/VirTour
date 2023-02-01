@@ -1,0 +1,15 @@
+.navbar-brand img{
+    width:3.5rem;
+    height:3.5rem;
+    margin-left: 1rem;
+  }
+  .navbar .container a{
+    background-color: white;
+  }
+  
+  .navbar .container a:hover{
+    color: white;
+    background-color: #004aad;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }

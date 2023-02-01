@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='dashboard.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- <script src="{{url_for('static', filename='dashboard.js')}}"></script> -->
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav
+    class="navbar static-top"
+    style="background-color: white; color: #004aad"
+  >
+    <div class="container">
+      <a class="navbar-brand" href="#!"><img
+        class="m-auto"
+        src="../static/images/VIR TOUR.png"
+      /></a>
+      <div>
+        <a class="btn navbar-btn" href={{ url_for('index') }}>Home</a>
+        <a class="btn navbar-btn" href="http://127.0.0.1:5000/map/"
+          >Virtual Tour</a
+        >
+        <span class="user">
+            <img src="../static/images/UserIcon.png" style="height:40px">
+          
+        </span>
+        <!-- <a class="btn navbar-btn" href="../Signup Page/index.html">Sign In</a> -->
+      </div>
+    </div>
+  </nav>
+  <div class="container" >
+    <div class="row" >
+
+   
+    <ul class="nav flex-column sidebar-nav col md-3" style=" background-color:#004aad;height:40em;">
+        <li class="nav-item">
+          <a class="nav-link active" href="" style="color:white">
+            <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z" clip-rule="evenodd"/></svg>
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color:white">
+            <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z" clip-rule="evenodd"/></svg>
+            Guides
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:5000/counsellor_signup" style="color:white">
+            <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z" clip-rule="evenodd"/></svg>
+            Register new Guide
+          </a>
+        </li>
+       
+      </ul>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+      <h3>Guides</h3>
+<hr>
+<div class="table-responsive">
+  <table class="table table-light" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Category</th>
+        <th scope="col">Qualification</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+      <tr>
+        <th scope="row">1</th>
+        <td>Prof.Sandeep Udmale
+        </td>
+        <td>abbxab@gmail.com
+        </td>
+        <td>7216276263
+        </td>
+        <td>Financial Issue Guidance Related Counsellor
+        </td>
+        <td>BTech</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Prof.Sandeep Udmale
+        </td>
+        <td>abbxab@gmail.com
+        </td>
+        <td>7216276263
+        </td>
+        <td>Financial Issue Guidance Related Counsellor
+        </td>
+        <td>BTech</td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>
+</main>
+
+</div>
+</div>
+</body>
+</html>

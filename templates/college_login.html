@@ -1,0 +1,90 @@
+{% extends "bootstrap/base.html" %} {% block content %}
+<head> <link
+    href="{{url_for('static', filename='navbar.css')}}"
+    rel="stylesheet"
+  />
+</head>
+<nav
+class="navbar static-top"
+style="background-color: white; color: #004aad"
+
+>
+<div class="container">
+  <a class="navbar-brand" href="#!"><img
+    class="m-auto"
+    src="../static/images/VIR TOUR.png"
+  /></a>
+  <div>
+    <a class="btn navbar-btn" href={{ url_for('index') }}>Home</a>
+    <a class="btn navbar-btn" href="http://127.0.0.1:5000/map/"
+      >Virtual Tour</a
+    >
+    <span class="dropdown">
+      <button class="btn navbar-btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Sign in
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="http://127.0.0.1:5000/student_login/">As a student</a></li>
+        <li><a class="dropdown-item" href="#">As a guide</a></li>
+        <li><a class="dropdown-item" href="http://127.0.0.1:5000/college_login/">As college</a></li>
+      </ul>
+    </span>
+    <!-- <a class="btn navbar-btn" href="../Signup Page/index.html">Sign In</a> -->
+  </div>
+</div>
+</nav>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="jumbotron text-center p-4">
+        <h2>College Login</h2>
+      </div>
+    </div>
+    <div class="col-lg-6 text-center">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+      <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="logemail">College Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="logemail"
+              name="logemail"
+              rows="1"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="logpassword">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="logpassword"
+              name="logpassword"
+              rows="1"
+              required
+            />
+          </div>
+        
+        
+        
+        
+        
+        
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary m-3">
+            Submit
+          </button>
+          <a href="{{ url_for('index') }}" class="btn btn-primary m-3"
+            >Go Home</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

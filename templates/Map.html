@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_f50b15f6e2f7f8660ac57ee20ba015da {
+                #map_489983e5f0735f15e6ecb999c104a075 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,18 +35,21 @@
                 .leaflet-container { font-size: 1rem; }
             </style>
         
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_f50b15f6e2f7f8660ac57ee20ba015da" ></div>
+            <div class="folium-map" id="map_489983e5f0735f15e6ecb999c104a075" ></div>
         
 </body>
 <script>
     
     
-            var map_f50b15f6e2f7f8660ac57ee20ba015da = L.map(
-                "map_f50b15f6e2f7f8660ac57ee20ba015da",
+            var map_489983e5f0735f15e6ecb999c104a075 = L.map(
+                "map_489983e5f0735f15e6ecb999c104a075",
                 {
                     center: [0, 0],
                     crs: L.CRS.EPSG3857,
@@ -60,34 +63,40 @@
 
         
     
-            var tile_layer_a232451e318a556cd02ccc442165a9fe = L.tileLayer(
+            var tile_layer_993a25953d8ecf14e165fe4f9440fa3e = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_f50b15f6e2f7f8660ac57ee20ba015da);
+            ).addTo(map_489983e5f0735f15e6ecb999c104a075);
         
     
-            var marker_eca26a2b2393ea9b89a10109bdaeb247 = L.marker(
-                [19.220927777777778, 73.16733333333333],
+            var marker_cluster_6bacf9f28ec46a2a2c19381bd08e6478 = L.markerClusterGroup(
                 {}
-            ).addTo(map_f50b15f6e2f7f8660ac57ee20ba015da);
+            );
+            map_489983e5f0735f15e6ecb999c104a075.addLayer(marker_cluster_6bacf9f28ec46a2a2c19381bd08e6478);
         
     
-        var popup_5222f70928d3ad42ba4257f62122e5cd = L.popup({"maxWidth": "100%"});
+            var marker_f6e5fc815ba6b9ead0844eaf0006c1c3 = L.marker(
+                [19.044494444444446, 72.820625],
+                {"name": "crce"}
+            ).addTo(map_489983e5f0735f15e6ecb999c104a075);
+        
+    
+        var popup_3ed6b1c0eac00e9fc2b719e4ffa90620 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_3def5bec7cd076240a1e437f4bd43fd5 = $(`<div id="html_3def5bec7cd076240a1e437f4bd43fd5" style="width: 100.0%; height: 100.0%;">DJSCE,Kalyan, Ulhasnagar, Thane, Maharashtra, 421002, India</div>`)[0];
-                popup_5222f70928d3ad42ba4257f62122e5cd.setContent(html_3def5bec7cd076240a1e437f4bd43fd5);
+                var html_dfd319cb3376756c72388a6ae80f12cf = $(`<div id="html_dfd319cb3376756c72388a6ae80f12cf" style="width: 100.0%; height: 100.0%;"><a href=/virtual_tour/63d65cf29ec96d5341670569>crce,Fr Conceicao Rodrigues College of Engineering, Kadeshwari Mandir Marg, Land's End, H/W Ward, Zone 3, Mumbai, Mumbai Suburban, Maharashtra, 400050, India</a></div>`)[0];
+                popup_3ed6b1c0eac00e9fc2b719e4ffa90620.setContent(html_dfd319cb3376756c72388a6ae80f12cf);
             
         
 
-        marker_eca26a2b2393ea9b89a10109bdaeb247.bindPopup(popup_5222f70928d3ad42ba4257f62122e5cd)
+        marker_f6e5fc815ba6b9ead0844eaf0006c1c3.bindPopup(popup_3ed6b1c0eac00e9fc2b719e4ffa90620)
         ;
 
         
     
     
-            marker_eca26a2b2393ea9b89a10109bdaeb247.bindTooltip(
+            marker_f6e5fc815ba6b9ead0844eaf0006c1c3.bindTooltip(
                 `<div>
                      Click for virtual tour
                  </div>`,
@@ -95,28 +104,28 @@
             );
         
     
-            var marker_51318991d8a2b5c08a066d1972c7a76f = L.marker(
-                [10.995230555555555, 78.41429444444445],
-                {}
-            ).addTo(map_f50b15f6e2f7f8660ac57ee20ba015da);
+            var marker_3970e1b89b124d786234b03b3a94f7d6 = L.marker(
+                [19.10756111111111, 72.83730277777778],
+                {"name": "DJSCE"}
+            ).addTo(map_489983e5f0735f15e6ecb999c104a075);
         
     
-        var popup_390dc677cf174a520d6cd21a76c7fc30 = L.popup({"maxWidth": "100%"});
+        var popup_fa8d0b14a174a109662f458c0f9f0905 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_56d5cf91eb607b1252631e1a177c9984 = $(`<div id="html_56d5cf91eb607b1252631e1a177c9984" style="width: 100.0%; height: 100.0%;">vjj,Alingipallam, Musiri, Tiruchirappalli District, Tamil Nadu, 621211, India</div>`)[0];
-                popup_390dc677cf174a520d6cd21a76c7fc30.setContent(html_56d5cf91eb607b1252631e1a177c9984);
+                var html_e5860d6c0b6dee093e5bb56e5ea00385 = $(`<div id="html_e5860d6c0b6dee093e5bb56e5ea00385" style="width: 100.0%; height: 100.0%;"><a href=/virtual_tour/63d62086eaa2af5e9472704d>DJSCE,Dwarkadas J Sanghvi College of Engineering, Gulmohar Road, Vile Parle West, K/W Ward, Zone 3, Mumbai, Mumbai Suburban, Maharashtra, 400058, India</a></div>`)[0];
+                popup_fa8d0b14a174a109662f458c0f9f0905.setContent(html_e5860d6c0b6dee093e5bb56e5ea00385);
             
         
 
-        marker_51318991d8a2b5c08a066d1972c7a76f.bindPopup(popup_390dc677cf174a520d6cd21a76c7fc30)
+        marker_3970e1b89b124d786234b03b3a94f7d6.bindPopup(popup_fa8d0b14a174a109662f458c0f9f0905)
         ;
 
         
     
     
-            marker_51318991d8a2b5c08a066d1972c7a76f.bindTooltip(
+            marker_3970e1b89b124d786234b03b3a94f7d6.bindTooltip(
                 `<div>
                      Click for virtual tour
                  </div>`,
@@ -124,28 +133,28 @@
             );
         
     
-            var marker_67fd6a5505b300152b92fb56ded85965 = L.marker(
-                [30.84928888888889, 75.4186611111111],
-                {}
-            ).addTo(map_f50b15f6e2f7f8660ac57ee20ba015da);
+            var marker_f7df1be9cfe18ec6808b1f3b1d5247ea = L.marker(
+                [19.02245, 72.85596111111111],
+                {"name": "VJTI"}
+            ).addTo(map_489983e5f0735f15e6ecb999c104a075);
         
     
-        var popup_1d40e725b0e5d8dcc763c8e34e3b649e = L.popup({"maxWidth": "100%"});
+        var popup_4d63f11604e3de6c1f61a30554127f3a = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_9b2b04bb9336bc1a3a2e76dd0b00e2c7 = $(`<div id="html_9b2b04bb9336bc1a3a2e76dd0b00e2c7" style="width: 100.0%; height: 100.0%;">VJTI,Galib Khurd, Jagraon Tahsil, Ludhiana, Punjab, 142036, India</div>`)[0];
-                popup_1d40e725b0e5d8dcc763c8e34e3b649e.setContent(html_9b2b04bb9336bc1a3a2e76dd0b00e2c7);
+                var html_555e16f0c51b0f67f1b3ee130802f485 = $(`<div id="html_555e16f0c51b0f67f1b3ee130802f485" style="width: 100.0%; height: 100.0%;"><a href=/virtual_tour/63d6224aeaa2af5e9472704e>VJTI,Veermata Jijabhai Technological Institute (VJTI), 501-509, VJTI Marg, Matunga East, F/N Ward, Zone 2, Mumbai, Mumbai City, Maharashtra, 400031, India</a></div>`)[0];
+                popup_4d63f11604e3de6c1f61a30554127f3a.setContent(html_555e16f0c51b0f67f1b3ee130802f485);
             
         
 
-        marker_67fd6a5505b300152b92fb56ded85965.bindPopup(popup_1d40e725b0e5d8dcc763c8e34e3b649e)
+        marker_f7df1be9cfe18ec6808b1f3b1d5247ea.bindPopup(popup_4d63f11604e3de6c1f61a30554127f3a)
         ;
 
         
     
     
-            marker_67fd6a5505b300152b92fb56ded85965.bindTooltip(
+            marker_f7df1be9cfe18ec6808b1f3b1d5247ea.bindTooltip(
                 `<div>
                      Click for virtual tour
                  </div>`,

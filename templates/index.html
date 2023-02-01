@@ -1,25 +1,210 @@
-{% extends "bootstrap/base.html" %} {% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
-      <div class="jumbotron text-center p-4">
-        <h2>Cloudinary Image Management Demo</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>VirTour</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="" rel="stylesheet" />
+    <link
+      href="{{url_for('static', filename='styles.css')}}"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/105/three.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js"></script>
+  </head>
+  <body>
+    <nav
+      class="navbar static-top"
+      style="background-color: white; color: #004aad"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#!"><img
+          class="m-auto"
+          src="../static/images/VIR TOUR.png"
+        /></a>
+        <div>
+          <a class="btn navbar-btn" href={{ url_for('index') }}>Home</a>
+          <a class="btn navbar-btn" href="http://127.0.0.1:5000/map/"
+            >Virtual Tour</a
+          >
+          <span class="dropdown">
+            <button class="btn navbar-btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Sign in
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="http://127.0.0.1:5000/student_login/">As a student</a></li>
+              <li><a class="dropdown-item" href="#">As a guide</a></li>
+              <li><a class="dropdown-item" href="http://127.0.0.1:5000/college_login/">As college</a></li>
+            </ul>
+          </span>
+          <!-- <a class="btn navbar-btn" href="../Signup Page/index.html">Sign In</a> -->
+        </div>
       </div>
-    </div>
-    <div class="col-lg-9 text-center">
-      <h5>
-        This is a Python + Flask demo application to showcase Cloudinary's
-        comprehensive APIs and administration capabilities.
-      </h5>
-    </div>
-    <div class="col-lg-7 text-center">
-      <a href="{{ url_for('upload') }}" class="btn btn-primary m-3"
-        >Upload Images</a
-      >
-      <a href="{{ url_for('gallery') }}" class="btn btn-primary m-3"
-        >Image Gallery</a
-      >
-    </div>
-  </div>
-</div>
-{% endblock %}
+    </nav>
+    <marquee class="marquee-header">
+      As long as the title to the delivered Products has not been transferred to the Customer, the Customer shall not be allowed to process the Products, to place the Products outside its actual control
+    </marquee>
+    <header class="masthead">
+      <div class="container position-relative">
+        <div class="row justify-content-center">
+          <div class="col-xl-6">
+            <div class="text-center text-white">
+              <h1 class="mb-5 marquee">Take virtual tour </h1>
+              <p>Virtual Tour offers professionals, businesses and commercial advertisers, a unique opportunity to promote their presentations, websites and online marketing messages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Icons Grid-->
+    <section class="features-icons bg-light text-center">
+      <div class="container">
+        <div class="row">
+          <h2 class="feature-header">WE'RE KEELE AND WE'RE DIFFERENT</h2>
+          <div class="col-lg-6">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <a class="icon" href="{{ url_for('student_signup') }}">
+                <div class="features-icons-icon d-flex">
+                  <img
+                    class="icons m-auto text-primary"
+                    src="../static/images/UserIcon.png"
+                  />
+                </div>
+                <h3>STUDENT</h3>
+              </a>
+              <p class="lead mb-0">
+                Register to take a tour of the college and connect to
+                counsellors!
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <a class="icon" href="{{ url_for('upload') }}">
+                <div class="features-icons-icon d-flex">
+                  <img
+                    class="icons m-auto text-primary"
+                    src="../static/images/CollegeIcon.png"
+                  />
+                </div>
+                <h3>COLLEGE</h3>
+              </a>
+              <p class="lead mb-0">
+                Register your college to provide the virtual tour of your
+                college
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Image Showcases-->
+    <section class="showcase">
+      <div class="container-fluid p-0">
+        <div class="row g-0">
+          <div class="col-lg-6 order-lg-2 text-white showcase-img">
+            <div class="Pano" id="College1" style="height: 500px"></div>
+          </div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2>Dwarkadas J. Sanghvi College of Engineering</h2>
+            <p class="lead mb-0">
+              When you use a theme created by Start Bootstrap, you know that the
+              theme will look great on any device, whether it's a phone, tablet,
+              or desktop the page will behave responsively!
+            </p>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-lg-6 text-white showcase-img">
+            <div class="Pano" id="College2" style="height: 500px"></div>
+          </div>
+          <div class="col-lg-6 my-auto showcase-text">
+            <h2>Veermata Jijabai Technological Institute</h2>
+            <p class="lead mb-0">
+              Newly improved, and full of great utility classes, Bootstrap 5 is
+              leading the way in mobile responsive web development! All of the
+              themes on Start Bootstrap are now using Bootstrap 5!
+            </p>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-lg-6 order-lg-2 text-white showcase-img">
+            <div class="Pano" id="College3" style="height: 500px"></div>
+          </div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2>Easy to Use & Customize</h2>
+            <p class="lead mb-0">
+              Landing Page is just HTML and CSS with a splash of SCSS for users
+              who demand some deeper customization options. Out of the box, just
+              add your content and images, and your new landing page will be
+              ready to go!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer
+      class="footer"
+      style="background-color: rgb(60, 60, 63); color: white"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><a href="#!">About</a></li>
+              <li class="list-inline-item">⋅</li>
+              <li class="list-inline-item"><a href="#!">Contact</a></li>
+              <li class="list-inline-item">⋅</li>
+              <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+              <li class="list-inline-item">⋅</li>
+              <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">
+              &copy; Your Website 2022. All Rights Reserved.
+            </p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item me-4">
+                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+              </li>
+              <li class="list-inline-item me-4">
+                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </body>
+</html>

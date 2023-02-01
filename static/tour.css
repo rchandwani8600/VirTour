@@ -1,70 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&display=swap');
-/* *{
-    margin: 10px;
-    padding: 10px;
-    color: black;
-} */
-/* .row{
-    display: flex;
-    flex-direction: row;
-    justify-items: center;
-    padding: 10px;
-}
-.Pano{
-    width: 100%;
-    height: 60vh;
-}
-#College_name{
-    font-size: 3rem;
-    text-transform: capitalize;
-    display: block;
-    color: black;
-    top: 0;
-    width: 100%;
-    text-align: center;
-    justify-self: center;
-    font-family: 'Cormorant SC', serif;
-    height: 10vh;
-    position: relative;
-    background: transparent;
-}
-.card {
-    margin: 20px;
-    width: 80vh;
-    height: 50vh;
-    padding: 10px;
-    background: rgba(198, 198, 198, 0.34);
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
-    position: absolute;
-    border-bottom: 3px solid rgba(255, 255, 255, 0.440);
-    border-left: 2px  rgba(255, 255, 255, 0.545) outset;
-    box-shadow: -40px 50px 30px rgba(0, 0, 0, 0.280);
-    transform: skewX(10deg);
-    transition: .4s;
-    overflow: hidden;
-    color: white;
-  }
-  
-  .card:hover {
-    height: 90vh;
-    transform: skew(0deg);
-  }
-  .Pano:hover{
-    height: 100%;
-  }
- 
-  
-  .card h5 {
-    text-align: center;
-    color: rgb(218, 244, 237);
-    text-shadow: -10px 5px 10px rgba(0, 0, 0, 0.573);
-  }
-  .card p{
-    color: aliceblue;
-    text-align: center;
-  } */
-  
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -101,7 +39,7 @@
     text-decoration: none;
   }
   
-  .heading__credits .heading__link {
+  .heading_credits .heading_link {
     color: inherit;
   }
   
@@ -115,6 +53,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    font-family: 'Titillium Web', sans-serif;
   }
   
   .card {
@@ -127,6 +66,8 @@
     border-radius: 10px;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
     transition: all 0.2s;
+    color: #004aad;
+    background-color: #fff;
   }
   
   .card:hover {
@@ -135,11 +76,24 @@
   }
   
   .card__link,
-  .card__exit,
-  .card__icon {
+  .card__exit {
     position: relative;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.9);
+    background-color:#004aad;
+    padding: 1rem;
+
+    /* font-size: 0.9rem; */
+  }
+
+  .card__title{
+    font-weight: 600;
+  }
+
+  .card__link:hover{
+    color:white;
+    font-weight: bold;
+    font-size: 1rem;
   }
   
   .card__link::after {
@@ -149,7 +103,7 @@
     content: "";
     width: 0%;
     height: 3px;
-    background-color: rgba(255, 255, 255, 0.6);
+    /* background-color: rgba(255, 255, 255, 0.6); */
     transition: all 0.5s;
   }
   
@@ -165,38 +119,39 @@
   .card__icon {
     grid-row: 2/3;
     font-size: 30px;
+    height:10em;
   }
   
   .card__title {
+    height:1em;
     grid-row: 3/4;
-    font-weight: 400;
-    color: #ffffff;
+    font-weight: bold;
+    color: #004aad;
     font-size: x-large;
   }
   
   .card__apply {
+    height:0.1em;
     grid-row: 4/5;
     align-self: center;
   }
   
-  /* CARD BACKGROUNDS */
   
-  .card-1 {
-    background: radial-gradient(#c2cfe8, #335e9a);
+
+  .College_name{
+    font-size: 3rem;
+    text-transform: capitalize;
+    display: block;
+    color: #004aad;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    justify-self: center;
+    font-family: 'Cormorant SC', serif;
+    height: 10vh;
+    position: relative;
+    background: transparent;
   }
-  
-  .card-2 {
-    background: radial-gradient(#eda5a6, #bf7285);
-  }
-  
-  .card-3 {
-    background: radial-gradient(#e065f3, #8e5da3);
-  }
- 
-  .card-4 {
-    background: radial-gradient(#60efbc, #438c85);
-  }
-  /* RESPONSIVE */
   
   @media (max-width: 1600px) {
     .cards {

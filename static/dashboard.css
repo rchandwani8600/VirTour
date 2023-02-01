@@ -1,0 +1,45 @@
+.navbar-brand{
+    color: #004aad;
+    background-color: white;
+  }
+  
+.navbar .container a{
+    background-color: white;
+  }
+  
+.navbar .container a:hover{
+    color: white;
+    background-color: #004aad;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+.navbar-brand img{
+    width:3.5rem;
+    height:3.5rem;
+    margin-left: 1rem;
+  }
+
+.sidebar {
+    background: #004aad ;
+    height: 100%;
+    color:white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 100;
+    padding: 70px 0 0 10px;
+    border-right: 1px solid #d3d3d3;
+  }
+  
+.left-sidebar {
+    position: sticky;
+    top:0;
+    height: calc(100vh - 70px)
+  }
+  
+.sidebar-nav li .nav-link {
+    color: #333;
+    font-weight: 500;
+}
