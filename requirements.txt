@@ -1,0 +1,12 @@
+cryptography==39.0.0
+Flask==2.2.2
+flask_bootstrap==3.3.7.1
+Flask_Bootstrap4==4.0.2
+Flask_PyMongo==2.3.0
+folium==0.14.0
+geopy==2.3.0
+Pillow==9.4.0
+pymongo==4.3.3
+PyPDF2==3.0.1
+stripe==5.0.0
+Werkzeug==2.2.2
